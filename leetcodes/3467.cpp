@@ -17,8 +17,8 @@ public:
         }
 
         // bubble sort
-        for (int i = 0; i < nums.size() - 1; i++) {
-            for (int j = 0; j < nums.size() - i - 1; j++) {
+        for (int i = 0; i < nums.size() - 1; i++) { // "-1" tá lá por conta que sempre tem q parar pelo menos no penultimo elemento (é sempre em dupla)
+            for (int j = 0; j < nums.size() - i - 1; j++) { // o "- i" se dá por conta que não faz sentido passar dnv pelo oq já está organizado
                 if (nums[j] > nums[j + 1]) {
                     int temp = nums[j];   // guarda o valor do lugar atual
                     nums[j] = nums[j + 1]; // atrela o valor atual com o do próximo
