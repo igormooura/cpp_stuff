@@ -15,7 +15,8 @@ int main() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //IA Q FEZ ISSO
 
     std::cout << "What's your full name?\n";
-    std::getline(std::cin, fullname); //aceita texto
+    std::getline(std::cin >> std::ws, fullname); //aceita frases 
+                                                // ws ignora " "
 
     std::cout << "His full name is: " << fullname << std::endl;
 

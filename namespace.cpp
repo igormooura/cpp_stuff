@@ -11,13 +11,15 @@ namespace second {
 
 int main(){ 
 
-    std::cout<< first::x << std::endl;
+    using namespace std;
+
+    cout<< first::x << endl;
     
-    // std::cout<< x << std::endl; x = undefined
+    // cout<< x << endl; x = undefined
 
     using namespace second; 
 
-    std::cout<< x << std::endl;
+    cout<< x << endl;
 
     return 0; 
 }
