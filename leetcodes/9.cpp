@@ -2,6 +2,8 @@
 #include <vector>
 using namespace std;
 
+// this solution is slow as fuck btw 
+
 class Solution {
 public:
     bool isPalindrome(int x) {
