@@ -16,6 +16,16 @@ public:
                     nums[j] = nums[j + 1];
                     nums[j + 1] = temp;
                     trocou = true;
+
+
+                    // outra maneira de fazer isso sem usar temp
+                    //[2 ,4 ,5 ,6 ,7] 
+                    //nums[j] += nums[j+1]; 
+                    // [6, 4, 5 ,6 ,7 ]
+                    //nums[j + 1] = nums[j] - nums[j + 1];
+                    // [6, 2, 5 ,6, 7]
+                    //nums[j] -= nums[j + 1];
+                    // [4, 2, 5 ,6,7 ]
                 }
             }
             if (!trocou) break; // já está ordenado
