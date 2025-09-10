@@ -12,11 +12,14 @@ public:
             if (c == '(' || c == '{' || c == '[') {
                 st.push(c);
             } else {
-                if (c == ')' && !st.empty() && st.top() == '(') {
+
+                if(st.empty()) return false;
+
+                if (c == ')' && st.top() == '(') {
                     st.pop();
-                } else if (c == '}' && !st.empty() && st.top() == '{') {
+                } else if (c == '}'  && st.top() == '{') {
                     st.pop();
-                } else if (c == ']' && !st.empty() && st.top() == '[') {
+                } else if (c == ']'  && st.top() == '[') {
                     st.pop();
                 } else {
                     return false;
@@ -27,6 +30,7 @@ public:
         return st.empty();
     }
 };
+
 
 int main() {
     Solution sol;
