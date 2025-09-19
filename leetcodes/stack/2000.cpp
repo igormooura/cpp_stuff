@@ -29,6 +29,36 @@ public:
     }
 };
 
+// empilha até a letra -> desempilha e concatena com oq sobrou
+// class Solution {
+// public:
+//     string reversePrefix(string word, char ch) {
+//         stack<char> p1;
+//         int idx = -1;
+
+//         for (int i = 0; i < word.size(); i++) {
+//             p1.push(word[i]);
+//             if (word[i] == ch) {
+//                 idx = i; 
+//                 break;
+//             }
+//         }
+
+//         if (idx == -1) return word;
+
+//         string result = "";
+//         while (!p1.empty()) {
+//             result += p1.top();
+//             p1.pop();
+//         }
+
+//         result += word.substr(idx + 1);
+
+//         return result;
+//     }
+// };
+
+
 int main() {
     Solution sol;
     
