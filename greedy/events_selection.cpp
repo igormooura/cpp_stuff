@@ -14,11 +14,11 @@ int eventsSelection(vector<int> &start, vector<int> &finish) {
         return a.second < b.second;
     });
 
-    int count = 1;
+    int count = 1; // pelo menos 1 evento foi selecionado 
     int last = 0;
 
     for (int i = 1; i < n; i++) {
-        if (events[i].first >= events[last].second) {
+        if (events[i].first > events[last].second) {   // '>' enforces a strictly later start time than the previous event's end.
             count++;
             last = i;
         }
