@@ -1,44 +1,56 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<double> value, weight;
+using ll = long long;
 
-bool comp(int a, int b) {
-    return value[a] * weight[b] > value[b] * weight[a];
+bool comp(pair<ll,ll> a, pair<ll,ll> b){
+
+    // a.first  = value
+    // a.second = weight
+
+    return a.first * b.second > b.first * a.second;
 }
 
 int main() {
+
     int n;
     double capacity;
+
     cin >> n >> capacity;
 
-    value = vector<double>(n);
-    weight = vector<double>(n);
+    vector<pair<ll,ll>> itens(n);
 
-    for (int i = 0; i < n; i++) {
-        cin >> value[i] >> weight[i];
+    for(int i = 0; i < n; i++){
+
+        ll value, weight;
+        cin >> value >> weight;
+
+        itens[i] = {value, weight};
     }
 
-    vector<int> item(n);
-    for (int i = 0; i < n; i++) item[i] = i;
+    sort(itens.begin(), itens.end(), comp);
 
-    sort(item.begin(), item.end(), comp);
+    double ans = 0;
 
-    double totalValue = 0;
+    for(int i = 0; i < n; i++){
 
-    for (int i = 0; i < n; i++) {
-        int id = item[i];
+        ll value = itens[i].first;
+        ll weight = itens[i].second;
 
-        if (capacity >= weight[id]) {
-            totalValue += value[id];
-            capacity -= weight[id];
-        } else {
-            totalValue += value[id] * (capacity / weight[id]);
+        // cabe inteiro
+        if(capacity >= weight){
+
+            ans += value;
+            capacity -= weight;
+        }
+
+        // pega fração
+        else{
+
+            ans += value * (capacity / weight);
             break;
         }
     }
 
-    cout << fixed << setprecision(10) << totalValue << endl;
-
-    return 0;
+    cout << fixed << setprecision(10) << ans << endl;
 }
