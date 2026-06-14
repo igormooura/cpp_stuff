@@ -25,7 +25,7 @@ bool backtrack(vector<vi> &ball, int i, int j)
     else{
         for (int valor = 1; valor <= n; valor++){
             bool valido = true;
-            // linha
+
             for (int col = 0; col < n; col++){
                 if (ball[i][col] == valor){
                     valido = false;
@@ -33,7 +33,6 @@ bool backtrack(vector<vi> &ball, int i, int j)
                 }
             }
 
-            // coluna
             for (int row = 0; row < n && valido; row++){
                 if (ball[row][j] == valor){
                     valido = false;
