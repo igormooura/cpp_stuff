@@ -21,10 +21,7 @@ void build(int p, int l, int r){
 
     int m = (l + r) / 2;
     
-    build(2*p, l, m);
-    build(2*p + 1, m + 1, r);
-
-    seg[p] = seg[2*p] + seg[2*p + 1];
+    //return alguma_coisa(build(2*p, l, r), build(2*p+1, m + 1, r))
 }
 
 ll query (int ql, int qr, int p, int l, int r){ // ql e qr são numeros que a gente recebe
