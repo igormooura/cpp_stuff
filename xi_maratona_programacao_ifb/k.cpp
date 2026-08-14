@@ -1,115 +1,66 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 using pii = pair<int, int>;
 
 bitset<2010> vis;
+vector<pii> stars;
+vector<vector<bool>> adj(2010, vector<bool>(2010));
 
 int n, d;
 
-vector<pii> stars;
-vector<vector<bool>> adj(2010, vector<bool>(2010, false));
-
-int dist(int i, int j){
+int dist(int i, int j) {
     int dx = stars[i].first - stars[j].first;
     int dy = stars[i].second - stars[j].second;
 
     return ceil(sqrt(dx * dx + dy * dy));
 }
 
-int dfs(int x){
-
-    cout << "Visitando estrela " << x << '\n';
-
+int dfs(int x) {
     vis[x] = 1;
 
-    cout << "vis[" << x << "] agora e true\n";
+    int constellation = 1;
 
-    int constelation = 1;
-
-    for (int i = 0; i < n; i++)
-    {
-
+    for (int i = 0; i < n; i++) {
         if (i == x || vis[i] || !adj[x][i])
             continue;
 
-        cout << "Achei vizinho de "
-             << x << ": " << i << '\n';
-
-        constelation += dfs(i);
+        constellation += dfs(i);
     }
 
-    return constelation;
+    return constellation;
 }
 
-void solve(){
-
+void solve() {
     cin >> n >> d;
 
     stars.resize(n);
 
     for (int i = 0; i < n; i++)
-    {
         cin >> stars[i].first >> stars[i].second;
-    }
 
-    cout << "\nCriando o grafo...\n";
-
-    for (int i = 0; i < n; i++){
-
-        for (int j = i + 1; j < n; j++){
-
-            int distance = dist(i, j);
-
-            cout << "Distancia "
-                 << i << "-" << j
-                 << " = "
-                 << distance << '\n';
-
-            if (distance <= d){
-
-                cout << "Distancia valida, criando aresta\n";
-
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (dist(i, j) <= d) {
                 adj[i][j] = true;
                 adj[j][i] = true;
-
-                cout << "adj[" << i << "][" << j << "] = true\n";
-                cout << "adj[" << j << "][" << i << "] = true\n";
             }
         }
     }
 
-    cout << "\nResetando visitados...\n";
-
     vis.reset();
-
-    cout << "Todos os vertices agora estao como nao visitados\n";
 
     int maxC = 0;
 
-    for (int i = 0; i < n; i++){
-
-        if (!vis[i]){
-
-            cout << "\nComecando nova DFS em " << i << '\n';
-
-            int size = dfs(i);
-
-            cout << "Constelacao encontrada: "
-                 << size << " estrelas\n";
-
-            maxC = max(maxC, size);
-        }
+    for (int i = 0; i < n; i++) {
+        if (!vis[i])
+            maxC = max(maxC, dfs(i));
     }
 
-    cout << "\nMaior constelacao: "
-         << maxC << '\n';
+    cout << maxC << '\n';
 }
 
-int main()
-{
-
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
