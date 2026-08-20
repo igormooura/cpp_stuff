@@ -11,10 +11,7 @@ using ll = long long;
 using tiii = tuple<int, int, int>;
 const ll INF = 4e18;
 
-void solve()
-{
-    return;
-}
+
 
 int main()
 {
